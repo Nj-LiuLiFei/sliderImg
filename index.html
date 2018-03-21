@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝轮播</title>
+    <style>
+        #main{
+            width: 420px;
+            overflow: hidden;
+            height: 140px;
+        }
+        .slider_wrapper,.slider_wrapper li{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .slider_wrapper li{
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="main">
+    <ul class="slider_wrapper" style="width: 1260px;height: 140px;">
+        <li class="slider_item"><img src="img/1.webp"></li>
+        <li class="slider_item"><img src="img/2.webp"></li>
+        <li class="slider_item"><img src="img/3.webp"></li>
+        <li class="slider_item"><img src="img/4.webp"></li>
+        <li class="slider_item"><img src="img/5.webp"></li>
+        <li class="slider_item"><img src="img/6.webp"></li>
+
+        <li class="slider_item"><img src="img/1.webp"></li>
+        <li class="slider_item"><img src="img/2.webp"></li>
+        <li class="slider_item"><img src="img/3.webp"></li>
+    </ul>
+</div>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script>
+    var left = 0;
+    var attribute = "transform 500ms ease-in-out";
+    $(function () {
+
+       window.setInterval(slider1,2000);
+
+    });
+    function slider1() {
+        console.log(1);
+        left = left + 420;
+
+        $(".slider_wrapper").css({
+            "transform":"translate3d("+-left+"px"+", 0px, 0px)",
+            "transition":attribute
+        });
+        if(left == 840) {
+            left = 0;
+            window.setTimeout(function () {
+                $(".slider_wrapper").css({
+                    "transform":"translate3d(0px, 0px, 0px)",
+                    "transition":"none"
+                });
+            },500)
+
+        }
+
+    }
+
+
+</script>
+</body>
+</html>
