@@ -5,6 +5,7 @@
     <title>大图效果</title>
     <style>
         #main{
+            position: relative;
             width: 590px;
             overflow: hidden;
             height: 470px;
@@ -23,6 +24,46 @@
             transition: opacity 500ms ease-in-out;
             opacity: 0;
         }
+        .slider_indicators{
+            position: absolute;
+            text-align: center;
+            z-index: 2;
+            bottom:30px;
+            left: 30px;
+        }
+        .slider_indicators i{
+            position: relative;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            float: left;
+            margin: 5px;
+
+        }
+        .slider_indicators i:after{
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            border-color: hsla(0,0%,100%,.4);
+            content: " ";
+            display: block;
+            width: 6px;
+            height: 6px;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            border: 2px solid #b9beba;
+            -webkit-transition: all .2s ease;
+            -o-transition: all ease .2s;
+            -moz-transition: all ease .2s;
+            transition: all .2s ease;
+        }
+        .slider_indicators i.active{
+            background: hsla(0,0%,100%,.2);
+        }
+        .slider_indicators i.active:after{
+            background: #FFFFFF;
+            border-color: #FFFFFF;
+        }
     </style>
 </head>
 <body>
@@ -34,6 +75,13 @@
         <li class="slider_item"><img src="img/10.jpg"></li>
         <li class="slider_item"><img src="img/11.jpg"></li>
     </ul>
+    <div class="slider_indicators">
+        <i class="active"></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+    </div>
 </div>
 <script src="js/jquery-1.10.2.min.js"></script>
 <script>
@@ -43,6 +91,9 @@
     });
 
     function silder() {
+
+        $(".slider_indicators i").removeClass("active");
+        $(".slider_indicators i").eq(index).addClass("active");
         $(".slider_wrapper .slider_item").css({
             "z-index":0,
             "opacity":0,
@@ -53,6 +104,10 @@
         });
         if(index  > 4) index = 0;
     }
+    $(".slider_indicators i").mouseover(function () {
+       index = $(this).index();
+
+    });
 </script>
 </body>
 </html>
