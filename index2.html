@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大图效果</title>
+    <style>
+        #main{
+            width: 590px;
+            overflow: hidden;
+            height: 470px;
+            margin: auto auto;
+        }
+        .slider_wrapper,.slider_wrapper .slider_item{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .slider_wrapper .slider_item{
+            position: absolute;
+            width: 590px;
+            height: 470px;
+            z-index: 0;
+            transition: opacity 500ms ease-in-out;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <ul class="slider_wrapper">
+        <li class="slider_item" style="opacity: 1;z-index: 1;"><img src="img/7.jpg"></li>
+        <li class="slider_item"><img src="img/8.jpg"></li>
+        <li class="slider_item"><img src="img/9.jpg"></li>
+        <li class="slider_item"><img src="img/10.jpg"></li>
+        <li class="slider_item"><img src="img/11.jpg"></li>
+    </ul>
+</div>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script>
+    var index = 1;
+    $(function () {
+        window.setInterval(silder,3000);
+    });
+
+    function silder() {
+        $(".slider_wrapper .slider_item").css({
+            "z-index":0,
+            "opacity":0,
+        });
+        $(".slider_wrapper .slider_item").eq(index++).css({
+            "z-index":1,
+            "opacity":1,
+        });
+        if(index  > 4) index = 0;
+    }
+</script>
+</body>
+</html>
